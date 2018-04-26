@@ -38,10 +38,10 @@ Or run normally at [http:localhost:8000].
 ### Data flow
 
 <details>
-	<summery>The data flow image</summery>
+<summary>The data flow image</summary>
 
-	![](./readme-images/real-time-web-data-flow.png)
-	
+![](./readme-images/real-time-web-data-flow.png)
+
 </details>
 
 ### Licensing
