@@ -9,6 +9,7 @@ This little project is 2 game that need 2 people. One person will be in the brow
 **NOTE**: You can't run this project locally. The slack api send events to an endpoint that needs to be online.
 
 **.env**
+
 If you still wish to run this project you will need to create an application in slack. From this you will need the following. A `CLIENT` and `CLIENT_SECRET` in the `.env` file. You get these when installing the app. Don't forget to set the scope for the project. This needs to be `im:read` to receive messages.
 
 You will also need to add a `SECRET` to the `.env` file for the `express-session`.
@@ -38,7 +39,7 @@ Or run normally at [http:localhost:8000].
 
 <details>
 	<summery>The data flow image</summery>
-	![](./readme-images/real-time-web-data-flow.jpeg)
+	![](./readme-images/real-time-web-data-flow.png)
 </details>
 
 ### Licensing
