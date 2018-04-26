@@ -1,25 +1,26 @@
+import initilizeSSE from './sse.js'
+
 let socket
 
-fetch( 'https://slack.com/api/rtm.connect?token=xoxp-13771535971-309888486722-349326280212-925fe6101525b0ee43b98cf1f652e293' )
-	.then( res => res.json() )
-	.then( res => {
+if ( start ) {
 
-		console.log( res )
-		socket = io.connect( res.url )
+	initilizeSSE()
 
-		socket.on( 'message', data => {
+}
 
-			console.log( data )
+if ( codeUrl ) {
 
-		} )
+	fetch( codeUrl )
+		.then( res => res.json() )
+		.then( res => {
 
-		socket.on( 'message.im', data => {
-
-			console.log( data )
+			console.log( res )
 
 		} )
-		
-	} )
-	.catch( err => console.log( err ) )
+		.catch( err => console.log( err ) )
+
+	initilizeSSE()
+
+}
 
 export default socket

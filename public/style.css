@@ -3,6 +3,7 @@ body {
 	background: #000;
 	position: relative;
 	min-height: 100vh;
+	overflow: hidden;
 }
 
 canvas {
@@ -64,4 +65,25 @@ button.hide {
 
 .hidden.show {
 	opacity: 1;
+}
+
+.score {
+	position: fixed;
+	top: 2em;
+	right: 2em;
+	color: #fff;
+	font-size: 1.4em;
+}
+
+.game-over {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate( -50% , -50% );
+	font-size: 15vw;
+	display: none;
+	color: #fff;
+	margin: 0;
+	width: 100%;
+	text-align: center;
 }

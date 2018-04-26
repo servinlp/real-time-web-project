@@ -9,16 +9,31 @@
 </head>
 <body>
 
-	<!-- <h1>Shoot the Shot</h1> 
-	// <div class="devider"></div> -->
-	<a href="https://slack.com/oauth/authorize?scope=im:read&client_id=13771535971.349725963333"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
-	<!-- <button>Join a room</button> -->
-	<!-- <p class="hidden">Waiting for another player...</p> -->
+	<p class="score">Score: <span>0</span></p>
+
+	<% if ( locals.showButton ) { %>
+		<a href="https://slack.com/oauth/authorize?scope=im:read&client_id=<%= client_id %>&redirect_uri=<%= path %>"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
+	<% } %>
+
+	<p class="game-over">Game over</p>
 	
 	<script src="/js/libs/socket.io.js"></script>
+	<script src="/js/libs/TweenMax.min.js"></script>
 	<script src="/js/libs/three.min.js"></script>
 	<script src="/js/libs/OrbitControls.js"></script>
 	<script src="/js/libs/stats.min.js"></script>
+	<script>
+		<% if ( locals.codeUrl ) { %>
+		const codeUrl = <%- JSON.stringify( codeUrl ) %>
+		const start = undefined;
+		<% }  else if ( locals.start ) { %>
+		const start = true;
+		const codeUrl = undefined;
+		<% }  else { %>
+		const start = undefined;
+		const codeUrl = undefined;
+		<% } %>
+	</script>
 	<script type="module" src="/js/index.js"></script>
 </body>
 </html>

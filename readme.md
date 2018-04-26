@@ -1,18 +1,49 @@
-# real-time-web-project
+# Real time web project
 
-This repo will hold the project you're going to build during the last two weeks of RTW. It functions as a way to show you've attained the following learning goals of this course:
+![](./readme-images/header.png)
 
-* Build a Node Web App which consumes an external data source through an API and serves a frontend using routing and templating techniques.
-* Create a "live" web app which reflects changes to the back-end data model in reactive front-end views, using real-time, event-based, messaging technologies like sockets or server-sent-events.
-* Describe their work in a professional readme with insightful diagrams showing the life cycle of their data.
+This little project is 2 game that need 2 people. One person will be in the browser and connect/give access to slack while the other person will be in slack ready to send messages to the other person. When the game starts the person in slack can start sending messages. These will then appear as objects the person in the browser needs to avoid. The more objects he avoids, the higher the score.
 
-<!-- ☝️ replace this description -->
+### Get started
 
-<!-- Add a nice image here at the end of the week, showing off your shiny frontend 📸 -->
+**NOTE**: You can't run this project locally. The slack api send events to an endpoint that needs to be online.
 
-<!-- Maybe a table of contents here? 📚 -->
+**.env**
+If you still wish to run this project you will need to create an application in slack. From this you will need the following. A `CLIENT` and `CLIENT_SECRET` in the `.env` file. You get these when installing the app. Don't forget to set the scope for the project. This needs to be `im:read` to receive messages.
 
-<!-- How about a section that describes how to install this project? 🤓 -->
+You will also need to add a `SECRET` to the `.env` file for the `express-session`.
+
+To install you can use both `npm` and `yarn`
+
+```sh
+(npm|yarn) install
+```
+
+To run as dev. This will start [nodemon] on [http:localhost:8000].
+
+```sh
+(npm|yarn) dev
+```
+
+Or run normally at [http:localhost:8000].
+
+```sh
+(npm|yarn) start
+```
+
+[http:localhost:8000]: http:localhost:8000
+[nodemon]: http://nodemon.io/
+
+### Data flow
+
+<details>
+	<summery>The data flow image</summery>
+	![](./readme-images/real-time-web-data-flow.jpeg)
+</details>
+
+### Licensing
+
+This project uses the MIT license.
 
 <!-- ...but how does one use this project? What are its features 🤔 -->
 
@@ -21,5 +52,3 @@ This repo will hold the project you're going to build during the last two weeks 
 <!-- Where do the 0️⃣s and 1️⃣s live in your project? What db system are you using?-->
 
 <!-- Maybe a checklist of done stuff and stuff still on your wishlist? ✅ -->
-
-<!-- How about a license here? 📜 (or is it a licence?) 🤷 -->

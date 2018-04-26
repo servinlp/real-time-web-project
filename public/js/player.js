@@ -23,6 +23,11 @@ class Player {
 	buildPlayer() {
 
 		const container = new THREE.Object3D(),
+
+			containerBoxGeometry = new THREE.BoxGeometry( 5, 12, 5 ),
+			containerBoxMaterial = new THREE.MeshBasicMaterial( { transparent: true, opacity: 0, wireframe: false } ),
+			containerBox = new THREE.Mesh( containerBoxGeometry, containerBoxMaterial ),
+
 			bodyGeometry = new THREE.BoxGeometry( 3, 5, 1 ),
 			bodyMaterial = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: false } ),
 			body = new THREE.Mesh( bodyGeometry, bodyMaterial ),
@@ -48,6 +53,9 @@ class Player {
 		rightWing.translateX( 2 )
 		canon.translateY( 5.9 )
 
+		containerBox.name = 'containerBox'
+
+		container.add( containerBox )
 		container.add( body )
 		container.add( front )
 		container.add( leftWing )
@@ -78,37 +86,37 @@ class Player {
 
 		if ( this.clicks.ArrowUp && this.velocity[ 1 ] !== this.speedLimit ) {
 
-			this.velocity[ 1 ] += 0.005
+			this.velocity[ 1 ] += 0.008
 
 		}
 
-		if ( !this.clicks.ArrowUp && this.velocity[ 1 ] ) {
+		if ( !this.clicks.ArrowUp && this.velocity[ 1 ] >= 0 ) {
 
-			this.velocity[ 1 ] -= 0.005
+			this.velocity[ 1 ] -= 0.015
 
 		}
 
 		if ( this.clicks.ArrowDown && this.velocity[ 1 ] !== this.speedLimit ) {
 
-			this.velocity[ 1 ] -= 0.005
+			this.velocity[ 1 ] -= 0.015
 
 		}
 
 		if ( !this.clicks.ArrowDown && this.velocity[ 1 ] ) {
 
-			this.velocity[ 1 ] += 0.005
+			this.velocity[ 1 ] += 0.008
 
 		}
 
 		if ( this.clicks.ArrowLeft ) {
 
-			this.velocity[ 0 ] += 1
+			this.velocity[ 0 ] += 2
 
 		}
 
 		if ( this.clicks.ArrowRight ) {
 
-			this.velocity[ 0 ] -= 1
+			this.velocity[ 0 ] -= 2
 
 		}
 
