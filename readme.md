@@ -39,7 +39,9 @@ Or run normally at [http:localhost:8000].
 
 <details>
 	<summery>The data flow image</summery>
+
 	![](./readme-images/real-time-web-data-flow.png)
+	
 </details>
 
 ### Licensing
