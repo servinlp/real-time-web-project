@@ -44,14 +44,23 @@ Or run normally at [http:localhost:8000].
 
 </details>
 
+### Offline
+
+When the server is offline during your session, The SSE stream will show a message of this and try to reconnect every 2 seconds. This is a loop so it will keep doing this untill it ether reconnects or the user closses the page.
+
+When the users internet fails, it will also show a message. Then once the connection is reastablished the message will go away again.
+
+### TODO
+
+- Make it usable for more users at once (And dynamically)
+- Handle offline better
+
+### Known bugs
+
+- When the server goes offline, a message will appear saying this. But when the server goes back online, there first needs to be a message send from the slack api before the `open` event on the SSE is called.
+
 ### Licensing
 
 This project uses the MIT license.
 
 <!-- ...but how does one use this project? What are its features 🤔 -->
-
-<!-- What external data source is featured in your project and what are its properties 🌠 -->
-
-<!-- Where do the 0️⃣s and 1️⃣s live in your project? What db system are you using?-->
-
-<!-- Maybe a checklist of done stuff and stuff still on your wishlist? ✅ -->

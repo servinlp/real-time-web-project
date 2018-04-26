@@ -20,9 +20,14 @@ app.set( 'view engine', 'ejs' )
 app.use( session( {
 	secret: process.env.SECRET,
 	resave: false,
-	saveUninitialized: true,
-	cookie: { secure: false }
+	saveUninitialized: true
+	// cookie: {
+	// 	secure: false,
+	// 	httpOnly: false
+	// }
 } ) )
+
+// app.use(session({ cookie: {maxAge: 36000000}, secret: process.env.SECRET }))
 
 app.use( bodyParser.urlencoded( { extended: false } ) )
 app.use( bodyParser.json() )
@@ -35,10 +40,6 @@ app.get( '*', ( req, res, next ) => {
 
 } )
 app.get( '/', ( req, res ) => {
-
-	console.log( 'get /' )
-	console.log( req.query )
-	console.log( req.session )
 
 	if ( req.session.code ) {
 
@@ -58,20 +59,19 @@ app.get( '/', ( req, res ) => {
 
 	}
 
-	res.render( 'index' )
+	res.render( 'index', {
+		highScore: req.session.highScore
+	} )
 
 } )
 
 app.get( '/sse', ( req, res ) => {
 
-	console.log( '/sse' )
 	messageSSE.init( req, res )
 
 } )
 
 app.post( '/events', ( req, res ) => {
-
-	console.log( req.body )
 
 	if ( req.body.challenge ) {
 
@@ -84,6 +84,12 @@ app.post( '/events', ( req, res ) => {
 	}
 
 } )
+
+app.get( '/ping', ( req, res ) => {
+
+	res.send( 'ping' )
+
+} ) 
 
 io.on( 'connection', socket => {
 

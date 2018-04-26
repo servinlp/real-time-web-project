@@ -67,12 +67,20 @@ button.hide {
 	opacity: 1;
 }
 
-.score {
+.score-container {
 	position: fixed;
 	top: 2em;
 	right: 2em;
+}
+
+.highscore,
+.score {
 	color: #fff;
 	font-size: 1.4em;
+}
+
+.new-highscore {
+	color: yellow;
 }
 
 .game-over {
@@ -86,4 +94,20 @@ button.hide {
 	margin: 0;
 	width: 100%;
 	text-align: center;
+}
+
+.error {
+	position: fixed;
+	bottom: 2em;
+	left: 50%;
+	transform: translateX( -50% );
+	display: none;
+	padding: 0.5em 1em;
+	background-color: #fff;
+	color: #000;
+	border-radius: 20px;
+}
+
+.error.show {
+	display: inline-block;
 }

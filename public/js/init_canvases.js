@@ -1,5 +1,6 @@
 import socket from './socket_connection.js'
 import Player from './player.js'
+import checkConnection from './check_connection.js'
 import { sse } from './sse.js'
 
 let playerArea
@@ -52,9 +53,6 @@ class PlayerArea {
 			new THREE.MeshPhongMaterial( { color: 0xffffff } ) // side
 		]
 
-		console.log( 'player', this.player.playerObject )
-		console.log( 'playerBox', this.playerContainerBox )
-
 	}
 
 	animate() {
@@ -73,8 +71,16 @@ class PlayerArea {
 
 			if ( intersects.length > 0 ) {
 
-				const gameOver = document.querySelector( '.game-over' )
+				const gameOver = document.querySelector( '.game-over' ),
+					highScoreEl = document.querySelector( '.highscore' )
+
 				gameOver.style.display = 'block'
+
+				if ( highScoreEl.classList.contains( 'new-highscore' ) ) {
+
+					this.newHighScore()
+
+				}
 
 				sse.close()
 				this.renderer.animate( null )
@@ -122,10 +128,6 @@ class PlayerArea {
 			length = Math.sqrt( ( pos.x*pos.x ) + (pos.y*pos.y) ),
 			corner = Math.sin( length / pos.y )
 
-		console.log( 'length', length )
-		console.log( length / pos.y )
-		console.log( 'corner', corner )
-
 		mesh.position.x = pos.x
 		mesh.position.y = pos.y
 
@@ -142,7 +144,6 @@ class PlayerArea {
 				
 				scene.remove( mesh )
 				raycasterObjects.splice( raycasterObjects.indexOf( mesh ), 1 )
-				console.log( 'remove', raycasterObjects )
 
 			}
 		} )
@@ -154,6 +155,15 @@ class PlayerArea {
 		return min + ( Math.floor( Math.random() * ( max + 99 ) ) - 99 )
 		
 	}
+
+	newHighScore() {
+
+		const highScoreEl = document.querySelector( '.highscore span' ),
+			score = parseInt( highScoreEl.textContent )
+
+		window.localStorage.setItem( 'highScore', score )
+
+	}
 	
 }
 
@@ -162,7 +172,7 @@ function initCanvases() {
 
 	playerArea = new PlayerArea()
 
-	console.log( 'PlayerArea', playerArea )
+	checkConnection()
 
 }
 

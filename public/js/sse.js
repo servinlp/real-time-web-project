@@ -13,7 +13,6 @@ function initilizeSSE() {
 
 	window.addEventListener( 'beforeunload', () => {
 
-		console.log( 'close' )
 		sse.close()
 
 	} )
@@ -22,15 +21,23 @@ function initilizeSSE() {
 
 function receiveMessage( e ) {
 
-	console.log( 'receiveMessage', e )
-
 	const message = JSON.parse( e.data ),
 		scoreEl = document.querySelector( '.score span' ),
-		currentScore = parseInt( scoreEl.textContent )
+		currentScore = parseInt( scoreEl.textContent ),
+		highEl = document.querySelector( '.highscore' ),
+		highScoreEl = document.querySelector( '.highscore span' ),
+		currentHighScore = parseInt( highScoreEl.textContent )
 
 	console.log( message )
 
 	scoreEl.textContent = currentScore + 1
+
+	if ( currentScore + 1 > currentHighScore ) {
+
+		highEl.classList.add( 'new-highscore' )
+		highScoreEl.textContent = currentHighScore + 1
+
+	}
 
 	playerArea.renderMessage( message )
 
@@ -40,6 +47,10 @@ function sseOpen( e ) {
 
 	console.log( 'sseOpen', e )
 
+	const server = document.querySelector( '.error.server' )
+
+	server.classList.remove( 'show' )
+
 }
 
 function sseError( e ) {
@@ -47,6 +58,10 @@ function sseError( e ) {
 	console.log( 'sseError', e )
 
 	if ( e.target.readyState === 2 ) {
+
+		const server = document.querySelector( '.error.server' )
+
+		server.classList.add( 'show' )
 
 		setTimeout( () => {
 
